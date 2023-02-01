@@ -1,0 +1,3 @@
+INSERT INTO `article` (title,content,author) values
+ ("c'est pas pour toi non plus","La retraite c'nus magnficiis porro nobis aut ullam! Tempora, odit consequatur hic quam labore consectetur ei fugiat pariatur?", "Macaron"),
+( "c'est pas pour toi non plus", "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos eius perferendis expedita molestias voluptas quaerat, ipsa accusamus odio soluta odit.", "Borgne");

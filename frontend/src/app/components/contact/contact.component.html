@@ -1,0 +1,100 @@
+<h1>contact works!</h1>
+
+<div class="container py-5">
+  <p>Contact</p>
+
+  <form class="d-flex flex-column m-3" [formGroup]="formContact">
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+      <mat-error *ngIf="formContact.get('email')?.hasError('required')">
+        L'email est obligatoire
+      </mat-error>
+      <mat-error *ngIf="formContact.get('email')?.hasError('email')">
+        Format invalide
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Object</mat-label>
+      <input matInput formControlName="object" />
+      <mat-error *ngIf="formContact.get('object')?.hasError('required')">
+        L'object est obligatoire
+      </mat-error>
+      <mat-error *ngIf="formContact.get('object')?.hasError('maxlength')">
+        {{formContact.get('object')?.errors?.['maxlength']?.requiredLength}}
+        maximum character ({{formContact.get('object')?.errors?.['maxlength']?.requiredLength
+          - formContact.get('object')?.errors?.['maxlength']?.actualLength
+        }})
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput formControlName="newPassword" />
+      <mat-error *ngIf="formContact.get('newPassword')?.hasError('required')">
+        L'newPassword est obligatoire
+      </mat-error>
+      <mat-error *ngIf="formContact.get('newPassword')?.hasError('minlength')">
+        {{formContact.get('newPassword')?.errors?.['minlength']?.requiredLength}}
+        minimum character ({{formContact.get('newPassword')?.errors?.['minlength']?.actualLength
+        }})
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Password Confirmation</mat-label>
+      <input type="password" matInput formControlName="confirmPassword" />
+      <mat-error
+        *ngIf="formContact.get('confirmPassword')?.hasError('required')"
+      >
+        L'confirmPassword est obligatoire
+      </mat-error>
+      <mat-error
+        *ngIf="formContact.get('confirmPassword')?.hasError('minlength')"
+      >
+        {{formContact.get('confirmPassword')?.errors?.['minlength']?.requiredLength}}
+        minimum character ({{formContact.get('confirmPassword')?.errors?.['minlength']?.actualLength
+
+
+        }})
+      </mat-error>
+      <mat-error
+        *ngIf="
+          formContact.get('confirmPassword')?.hasError('confirmedValidator')
+        "
+      >
+        newPassword and confirmPassword must be the same!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Message</mat-label>
+      <textarea
+        matInput
+        placeholder="Decrivez votre problème ..."
+        formControlName="message"
+      ></textarea>
+      <mat-error *ngIf="formContact.get('message')?.hasError('required')">
+        message est obligatoire
+      </mat-error>
+      <mat-error *ngIf="formContact.get('message')?.hasError('minlength')">
+        {{formContact.get('message')?.errors?.['minlength']?.requiredLength}}
+        minimum character ({{formContact.get('message')?.errors?.['minlength']?.actualLength
+
+        }})
+      </mat-error>
+      <mat-error *ngIf="formContact.get('message')?.hasError('maxlength')">
+        {{formContact.get('message')?.errors?.['maxlength']?.requiredLength}}
+        maximum character ({{formContact.get('message')?.errors?.['maxlength']?.requiredLength
+          - formContact.get('message')?.errors?.['maxlength']?.actualLength
+
+        }})
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" (click)="onSubmit()">
+      Envoyer formulaire
+    </button>
+  </form>
+</div>

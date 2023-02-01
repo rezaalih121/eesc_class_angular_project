@@ -1,0 +1,49 @@
+<div class="container text-center">
+  <h1>home works!</h1>
+  <button mat-icon-button color="warn">
+    <mat-icon>home</mat-icon>
+  </button>
+
+  <mat-divider></mat-divider>
+  <button mat-raised-button color="primary" [routerLink]="['/article-edit']">
+    <mat-icon class="m-0">add</mat-icon>
+    <span class="m-2 d-none d-md-block">Ajouter un article</span>
+  </button>
+  <div class="row">
+    <div class="col-md-6" *ngFor="let article of listeArticls; let i = index">
+      <mat-card class="example-card mb-4">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{ article.title }}</mat-card-title>
+          <mat-card-subtitle>{{ article.author }}</mat-card-subtitle>
+        </mat-card-header>
+        <img
+          mat-card-image
+          src="https://picsum.photos/300?random={{ i + 1 }}"
+          alt="Photo of a Shiba Inu"
+        />
+        <mat-card-content>
+          <p>
+            {{ article.content?.toUpperCase() }}
+          </p>
+        </mat-card-content>
+        <mat-card-actions class="gap-2 justify-content-center">
+          <a href="/article-edit/{{ article.id }}">
+            <button mat-raised-button color="accent">
+              <mat-icon class="m-0">edit</mat-icon>
+              <span class="m-2 d-none d-md-block">Modifier</span>
+            </button>
+          </a>
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="deleteArticle(article.id)"
+          >
+            <mat-icon class="m-0">delete</mat-icon>
+            <span class="m-2 d-none d-md-block">Supprimer</span>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
