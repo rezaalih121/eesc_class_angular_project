@@ -31,9 +31,13 @@ export class ArticleService {
   }
 
   getArticlesByTitleOrContent(searchTerm: string): Observable<Article[]> {
-    return this.httpClient.get<Article[]>(
-      this.apiUrl + '-by-searchTerm/' + searchTerm
-    );
+    if (this.apiUrl.includes('5000')) {
+      return this.httpClient.get<Article[]>(this.apiUrl + '?q=' + searchTerm);
+    } else {
+      return this.httpClient.get<Article[]>(
+        this.apiUrl + '-by-searchTerm/' + searchTerm
+      );
+    }
   }
 
   getArticlesById(id: string = '0'): Observable<Article> {

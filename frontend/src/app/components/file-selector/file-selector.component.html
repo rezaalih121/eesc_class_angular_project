@@ -1,0 +1,47 @@
+<div
+  [formGroup]="parentFormGroup"
+  class="mat-mdc-text-field-wrapper mdc-text-field ng-tns-c107-3 mdc-text-field--filled d-flex align-items-center py-3 mb-1 file-selector-container"
+>
+  <input
+    formControlName="{{ fileFormControlName }}"
+    [multiple]="multiple"
+    (change)="onFIleSelected($event)"
+    #inputFile
+    type="file"
+    class="d-none"
+  />
+
+  <button mat-mini-fab color="warn" (click)="inputFile.click()">
+    <mat-icon>attachment</mat-icon>
+  </button>
+
+  <div class="px-3">
+    <span *ngIf="fileToUpload.length == 0">Select a photo</span>
+    <div *ngIf="fileToUpload.length == 1">
+      <div>
+        File Name: {{ fileToUpload[0].fileName }} (
+        {{ fileToUpload[0].fileSize | myFilesize : 0 : "e" }} )
+      </div>
+      <div>
+        Modified Date:
+        {{ fileToUpload[0].fileDate | date : "dd/MM/yyyy, HH:mm:ss a" }}
+      </div>
+    </div>
+
+    <div *ngIf="fileToUpload.length > 1">
+      {{ fileToUpload.length }} files selected. Total size :
+      {{ fileToUpload | totalFileSize | myFilesize }}
+
+      <div *ngFor="let file of fileToUpload" class="border m-1 p-1">
+        <div>
+          File Name: {{ file.fileName }} (
+          {{ file.fileSize | myFilesize : 0 : "e" }} )
+        </div>
+        <div>
+          Modified Date:
+          {{ file.fileDate | date : "dd/MM/yyyy, HH:mm:ss a" }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

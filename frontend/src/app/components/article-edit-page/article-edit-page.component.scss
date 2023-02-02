@@ -1,1 +1,7 @@
-
+.file-selector-container {
+  border-bottom: 1px solid gray;
+  &:hover {
+    background-color: grey;
+    border-bottom: 1px solid gainsboro;
+  }
+}

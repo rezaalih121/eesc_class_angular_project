@@ -20,6 +20,11 @@ import { ArticleEditPageComponent } from './components/article-edit-page/article
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FileSelectorComponent } from './components/file-selector/file-selector.component';
+import { NgxFilesizeModule } from 'ngx-filesize';
+import { MyFilesizePipe } from './public/pipes/my-filesize.pipe';
+import { TotalFileSizePipe } from './public/pipes/total-file-size.pipe';
+import { FileValidatorDirective } from './public/validator/file-validator.directive';
 
 @NgModule({
   declarations: [
@@ -30,6 +35,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     ContactComponent,
     ArticleEditPageComponent,
     DeleteDialog,
+    FileSelectorComponent,
+    MyFilesizePipe,
+    TotalFileSizePipe,
+    FileValidatorDirective,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +56,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     HttpClientModule,
     MatSnackBarModule,
     MatDialogModule,
+    NgxFilesizeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

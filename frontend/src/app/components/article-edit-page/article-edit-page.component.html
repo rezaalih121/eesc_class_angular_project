@@ -1,6 +1,6 @@
 <h1>Add article</h1>
 
-<div class="container py-5">
+<div class="container py-5 col-7">
   <p>Contact</p>
 
   <form class="d-flex flex-column m-3" [formGroup]="formContact">
@@ -14,15 +14,11 @@
         {{formContact.get('title')?.errors?.['maxlength']?.requiredLength}}
         maximum character ({{formContact.get('title')?.errors?.['maxlength']?.requiredLength
           - formContact.get('title')?.errors?.['maxlength']?.actualLength
-
-
         }})
       </mat-error>
       <mat-error *ngIf="formContact.get('title')?.hasError('minlength')">
         {{formContact.get('title')?.errors?.['minlength']?.requiredLength}}
         minimum character ({{formContact.get('title')?.errors?.['minlength']?.actualLength
-
-
         }})
       </mat-error>
     </mat-form-field>
@@ -37,15 +33,11 @@
         {{formContact.get('author')?.errors?.['maxlength']?.requiredLength}}
         maximum character ({{formContact.get('author')?.errors?.['maxlength']?.requiredLength
           - formContact.get('author')?.errors?.['maxlength']?.actualLength
-
-
         }})
       </mat-error>
       <mat-error *ngIf="formContact.get('author')?.hasError('minlength')">
         {{formContact.get('author')?.errors?.['minlength']?.requiredLength}}
         minimum character ({{formContact.get('author')?.errors?.['minlength']?.actualLength
-
-
         }})
       </mat-error>
     </mat-form-field>
@@ -59,23 +51,43 @@
       <mat-error *ngIf="formContact.get('content')?.hasError('minlength')">
         {{formContact.get('content')?.errors?.['minlength']?.requiredLength}}
         minimum character ({{formContact.get('content')?.errors?.['minlength']?.actualLength
-
-
         }})
       </mat-error>
       <mat-error *ngIf="formContact.get('content')?.hasError('maxlength')">
         {{formContact.get('content')?.errors?.['maxlength']?.requiredLength}}
         maximum character ({{formContact.get('content')?.errors?.['maxlength']?.requiredLength
           - formContact.get('content')?.errors?.['maxlength']?.actualLength
-
-
         }})
       </mat-error>
     </mat-form-field>
+    <app-file-selector
+      [multiple]="true"
+      [parentFormGroup]="formContact"
+      [fileFormControlName]="'image'"
+    ></app-file-selector>
+    <mat-error
+      *ngIf="formContact.get('image')?.hasError('fileRequired')"
+      class="px-3"
+    >
+      file est obligatoire
+    </mat-error>
+    <mat-error
+      *ngIf="formContact.get('image')?.hasError('invalidExtention')"
+      class="px-3"
+    >
+      Only images allowed "{{
+        formContact.get("image")?.errors?.['invalidExtention'].extention
 
-    <input type="file" />
 
-    <button mat-flat-button color="primary" (click)="onSubmit()">
+
+      }}"
+    </mat-error>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="onSubmit()"
+      class="col-4 mt-3"
+    >
       Envoyer formulaire
     </button>
   </form>

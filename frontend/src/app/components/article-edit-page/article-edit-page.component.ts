@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from 'src/app/services/article.service';
 import { Article } from 'src/model/article-model';
+import { fileValidator } from 'src/app/public/validator/file-validator';
 
 @Component({
   selector: 'app-article-edit-page',
@@ -78,6 +79,7 @@ export class ArticleEditPageComponent {
           Validators.maxLength(121),
         ],
       ],
+      image: ['', [fileValidator(['jpg', 'png', 'gif', 'jpeg'])]],
     });
   }
 
